@@ -73,7 +73,7 @@ function renderBoard(list, containerId, firstKey, secondKey, maxGlobal) {
     // Ligne info du joueur (au-dessus)
     const infoRow = document.createElement('div');
     infoRow.className = 'name';
-    infoRow.textContent = `${p.name}    ${p.version}    ${p.f3}    ${p.date}    ${p.country}    ${p.mods}    ${p.difficulty}`;
+    infoRow.textContent = `${p.name}&nbsp&nbsp&nbsp&nbsp${p.version}&nbsp&nbsp&nbsp&nbsp${p.f3}&nbsp&nbsp&nbsp&nbsp${p.date}&nbsp&nbsp&nbsp&nbsp${p.country}&nbsp&nbsp&nbsp&nbsp${p.mods}&nbsp&nbsp&nbsp&nbsp${p.difficulty}`;
 
     // Ligne barre + temps total
     const barRow = document.createElement('div');
@@ -129,6 +129,7 @@ applyFilter();
 </body>
 
 </html>
+
 
 
 
