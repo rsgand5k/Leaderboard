@@ -62,19 +62,30 @@ function renderBoard(list, containerId, firstKey, secondKey, maxGlobal) {
   board.querySelectorAll('.row').forEach(e => e.remove());
   if (list.length === 0) return;
 
-  list.forEach(p => {
+  list.forEach((p, index) => {
     const t1 = parseTime(p[firstKey]);
     const t2 = parseTime(p[secondKey]);
     const total = t1 + t2;
 
     const row = document.createElement('div'); 
     row.className = 'row';
+    row.style.display = 'flex';
+    row.style.alignItems = 'flex-start';
+
+    // Rang
+    const rankDiv = document.createElement('div');
+    const suffix = (n) => n===1?'st':n===2?'nd':n===3?'rd':'th';
+    rankDiv.textContent = `${index+1}${suffix(index+1)}`;
+    rankDiv.style.width = '40px';
+    rankDiv.style.fontWeight = 'bold';
+    rankDiv.style.marginRight = '10px';
 
     // Ligne info du joueur (au-dessus)
     const infoRow = document.createElement('div');
     infoRow.className = 'name';
-    infoRow.textContent = `${p.name}    ${p.version}    ${p.f3}    ${p.date}    ${p.country}    ${p.mods}    ${p.difficulty}`;
+    infoRow.textContent = `${p.name}     ${p.version}     ${p.f3}     ${p.date}     ${p.country}     ${p.mods}     ${p.difficulty}`;
     infoRow.style.whiteSpace = "pre";
+    infoRow.style.marginBottom = '5px';
 
     // Ligne barre + temps total
     const barRow = document.createElement('div');
@@ -107,9 +118,15 @@ function renderBoard(list, containerId, firstKey, secondKey, maxGlobal) {
     barRow.appendChild(bar);
     barRow.appendChild(totalDiv);
 
+    // Colonne principale (infos + barre)
+    const mainCol = document.createElement('div');
+    mainCol.style.flex = '1';
+    mainCol.appendChild(infoRow);
+    mainCol.appendChild(barRow);
+
     // Ajout à la row
-    row.appendChild(infoRow);
-    row.appendChild(barRow);
+    row.appendChild(rankDiv);
+    row.appendChild(mainCol);
     board.appendChild(row);
   });
 }
@@ -130,6 +147,7 @@ applyFilter();
 </body>
 
 </html>
+
 
 
 
