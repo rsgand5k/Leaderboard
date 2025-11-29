@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leaderboard</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #3e3e3e; color: #f0f0f0; padding: 20px; }
+    h1, h2 { color: #f0f0f0; }
+    .board { background: #2c2c2c; padding: 20px; border-radius: 10px; max-width: 800px; margin-bottom: 30px; box-shadow: 0 2px 5px rgba(0,0,0,0.5); }
+    .row { margin-bottom: 15px; }
+    .name { font-weight: bold; margin-bottom: 5px; }
+    .bar-container { width: 100%; background: #444; border-radius: 5px; overflow: hidden; height: 25px; display: flex; }
+    .rsg { background: #4287f5; height: 100%; color: white; display: flex; align-items: center; justify-content: center; font-size: 12px; transition: width 1s ease; }
+    .k5 { background: #f54291; height: 100%; color: white; display: flex; align-items: center; justify-content: center; font-size: 12px; transition: width 1s ease; }
+  </style>
+</head>
+<body>
+
+<h1>Leaderboard</h1>
+<label>Date : <input type="date" id="dateFilter" /></label>
+
+<div class="board" id="leftBoard">
+  <h2>RSG + 5K</h2>
+</div>
+
+<div class="board" id="rightBoard">
+  <h2>5K + RSG</h2>
+</div>
+
+<script>
+function parseTime(t) {
+  return t.h*3600000 + t.m*60000 + t.s*1000 + t.ms;
+}
+function formatTime(ms) {
+  const h = Math.floor(ms/3600000); ms%=3600000;
+  const m = Math.floor(ms/60000); ms%=60000;
+  const s = Math.floor(ms/1000); ms%=1000;
+  return `${h}h ${m}m ${s}s ${ms}ms`;
+}
+
+const runsRsg5k = [
+  { name: "Antoine", date: "2025-11-23", version:"1.16.1", f3:"F3", country:"FR", rsg:{h:0,m:19,s:38,ms:397}, k5:{h:0,m:31,s:24,ms:0} },
+  { name: "LudovikMC", date: "2025-11-27", version:"1.16.1", f3:"No F3", country:"FR", rsg:{h:0,m:25,s:5,ms:576}, k5:{h:0,m:22,s:13,ms:0} }
+];
+const runs5kRsg = [
+  { name: "LudovikMC", date: "2025-11-23", version:"1.16.1", f3:"No F3", country:"FR", rsg:{h:0,m:48,s:1,ms:62}, k5:{h:0,m:19,s:57,ms:0} },
+  { name: "LudovikMC", date: "2025-11-26", version:"1.16.1", f3:"No F3", country:"FR", rsg:{h:0,m:37,s:30,ms:681}, k5:{h:0,m:19,s:57,ms:0} }
+];
+
+function getMaxGlobal() {
+  const allRuns = runsRsg5k.concat(runs5kRsg);
+  return Math.max(...allRuns.map(r => parseTime(r.rsg)+parseTime(r.k5)));
+}
+
+function sortByTotalTime(list) {
+  return list.slice().sort((a,b) => (parseTime(a.rsg)+parseTime(a.k5)) - (parseTime(b.rsg)+parseTime(b.k5)) );
+}
+
+function renderBoard(list, containerId, firstKey, secondKey, maxGlobal) {
+  const board = document.getElementById(containerId);
+  board.querySelectorAll('.row').forEach(e => e.remove());
+  if (list.length === 0) return;
+
+  list.forEach(p => {
+    const t1 = parseTime(p[firstKey]);
+    const t2 = parseTime(p[secondKey]);
+    const total = t1 + t2;
+
+    const row = document.createElement('div'); 
+    row.className = 'row';
+
+    // Ligne info du joueur (au-dessus)
+    const infoRow = document.createElement('div');
+    infoRow.className = 'name';
+    infoRow.textContent = `${p.name} . ${p.version} . ${p.f3} . ${p.date} . ${p.country}`;
+
+    // Ligne barre + temps total
+    const barRow = document.createElement('div');
+    barRow.style.display = 'flex';
+    barRow.style.alignItems = 'center';
+    barRow.style.justifyContent = 'space-between';
+
+    const bar = document.createElement('div'); 
+    bar.className = 'bar-container';
+    bar.style.width = (total / maxGlobal * 100) + '%';
+    
+    const firstBar = document.createElement('div'); 
+    firstBar.className = firstKey==='rsg'?'rsg':'k5';
+    firstBar.style.width = (t1/total*100)+'%';
+    firstBar.textContent = formatTime(t1);
+
+    const secondBar = document.createElement('div'); 
+    secondBar.className = secondKey==='rsg'?'rsg':'k5';
+    secondBar.style.width = (t2/total*100)+'%';
+    secondBar.textContent = formatTime(t2);
+
+    bar.appendChild(firstBar);
+    bar.appendChild(secondBar);
+
+    const totalDiv = document.createElement('div');
+    totalDiv.textContent = formatTime(total);
+    totalDiv.style.whiteSpace = 'nowrap';
+    totalDiv.style.marginLeft = '10px';
+
+    barRow.appendChild(bar);
+    barRow.appendChild(totalDiv);
+
+    // Ajout à la row
+    row.appendChild(infoRow);
+    row.appendChild(barRow);
+    board.appendChild(row);
+  });
+}
+
+function applyFilter() {
+  const date = document.getElementById('dateFilter').value;
+  const f1 = sortByTotalTime(runsRsg5k.filter(r=>!date||r.date<=date));
+  const f2 = sortByTotalTime(runs5kRsg.filter(r=>!date||r.date<=date));
+  const maxGlobal = getMaxGlobal();
+  renderBoard(f1,'leftBoard','rsg','k5', maxGlobal);
+  renderBoard(f2,'rightBoard','k5','rsg', maxGlobal);
+}
+
+document.getElementById('dateFilter').addEventListener('change',applyFilter);
+applyFilter();
+</script>
+
+</body>
+</html>
