@@ -7,7 +7,7 @@
   <style>
     body { font-family: Arial, sans-serif; background: #3e3e3e; color: #f0f0f0; padding: 20px; }
     h1, h2 { color: #f0f0f0; }
-    .board { background: #2c2c2c; padding: 20px; border-radius: 10px; max-width: 960px; margin-bottom: 30px; box-shadow: 0 2px 5px rgba(0,0,0,0.5); }
+    .board { background: #2c2c2c; padding: 20px; border-radius: 10px; margin-bottom: 30px; box-shadow: 0 2px 5px rgba(0,0,0,0.5); }
     .row { margin-bottom: 15px; }
     .name { font-weight: bold; margin-bottom: 5px; }
     .bar-container { width: 100%; background: #444; border-radius: 5px; overflow: hidden; height: 25px; display: flex; }
@@ -45,12 +45,11 @@ const runsRsg5k = [
 ];
 const runs5kRsg = [
   { name: "LudovikMC", date: "2025-11-23", version:"1.16.1", f3:"No F3", country:"FR", mods:"Modded", difficulty:"Hard", rsg:{h:0,m:48,s:1,ms:62}, k5:{h:0,m:19,s:57,ms:0} },
-  { name: "LudovikMC", date: "2025-11-26", version:"1.16.1", f3:"No F3", country:"FR", mods:"Modded", difficulty:"Hard", rsg:{h:0,m:37,s:30,ms:681}, k5:{h:0,m:26,s:34,ms:0} }
+  { name: "LudovikMC", date: "2025-11-26", version:"1.16.1", f3:"No F3", country:"FR", mods:"Modded", difficulty:"Hard", rsg:{h:0,m:37,s:30,ms:681}, k5:{h:0,m:26,s:34,ms:0} },
 ];
 
-function getMaxGlobal() {
-  const allRuns = runsRsg5k.concat(runs5kRsg);
-  return Math.max(...allRuns.map(r => parseTime(r.rsg)+parseTime(r.k5)));
+function getMaxTotal(list) {
+  return Math.max(...list.map(r => parseTime(r.rsg)+parseTime(r.k5)));
 }
 
 function sortByTotalTime(list) {
@@ -95,7 +94,8 @@ function renderBoard(list, containerId, firstKey, secondKey, maxGlobal) {
 
     const bar = document.createElement('div'); 
     bar.className = 'bar-container';
-    bar.style.width = (total / maxGlobal * 100) + '%';
+	const pxPerMs = 0.0003;
+	bar.style.width = ((t1 + t2) * pxPerMs) + 'px';
     
     const firstBar = document.createElement('div'); 
     firstBar.className = firstKey==='rsg'?'rsg':'k5';
@@ -135,9 +135,12 @@ function applyFilter() {
   const date = document.getElementById('dateFilter').value;
   const f1 = sortByTotalTime(runsRsg5k.filter(r=>!date||r.date<=date));
   const f2 = sortByTotalTime(runs5kRsg.filter(r=>!date||r.date<=date));
-  const maxGlobal = getMaxGlobal();
-  renderBoard(f1,'leftBoard','rsg','k5', maxGlobal);
-  renderBoard(f2,'rightBoard','k5','rsg', maxGlobal);
+  
+  const maxLeft = getMaxTotal(f1);
+  const maxRight = getMaxTotal(f2);
+
+  renderBoard(f1, 'leftBoard', 'rsg', 'k5', maxLeft);
+  renderBoard(f2, 'rightBoard', 'k5', 'rsg', maxRight);
 }
 
 document.getElementById('dateFilter').addEventListener('change',applyFilter);
@@ -147,9 +150,3 @@ applyFilter();
 </body>
 
 </html>
-
-
-
-
-
-
