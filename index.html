@@ -96,7 +96,7 @@ function renderBoard(list, containerId, firstKey, secondKey, maxGlobal) {
     // Ligne info du joueur (au-dessus)
     const infoRow = document.createElement('div');
     infoRow.className = 'name';
-    infoRow.textContent = `${p.name}     →     ${p.version}     ${p.f3}     ${p.date}     ${p.country}     ${p.mods}     ${p.difficulty}        🌱${p.seed}`;
+    infoRow.textContent = `${p.name}        ${p.country}        →        ${p.version}        ${p.f3}        ${p.date}        ${p.mods}        ${p.difficulty}        🌱${p.seed}`;
     infoRow.style.whiteSpace = "pre";
     infoRow.style.marginBottom = '5px';
 
@@ -170,6 +170,7 @@ document.getElementById('topX').addEventListener('input', applyFilter);
 </body>
 
 </html>
+
 
 
 
