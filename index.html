@@ -127,6 +127,8 @@ function renderBoard(list, containerId, firstKey, secondKey, maxGlobal) {
     totalDiv.style.whiteSpace = 'nowrap';
     totalDiv.style.marginLeft = '10px';
 
+	const window_width = window.innerWidth;
+
     barRow.appendChild(bar);
     barRow.appendChild(totalDiv);
 
@@ -166,6 +168,7 @@ document.getElementById('topX').addEventListener('input', applyFilter);
 </body>
 
 </html>
+
 
 
 
