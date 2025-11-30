@@ -14,6 +14,34 @@
     .rsg { background: #4287f5; height: 100%; color: white; display: flex; align-items: center; justify-content: center; font-size: 18px; transition: width 1s ease; }
     .k5 { background: #f54291; height: 100%; color: white; display: flex; align-items: center; justify-content: center; font-size: 18px; transition: width 1s ease; }
 	h4 { text-decoration: underline; }
+	.info-row {
+	  display: grid;
+	  grid-template-columns: 150px 60px 100px 80px 120px 100px 120px 1fr;
+	  gap: 10px;
+	  font-size: 14px;
+	  margin-bottom: 6px;
+	}
+	.info {
+	  white-space: nowrap;
+	}
+	@media (max-width: 900px) {
+  .info-row {
+		grid-template-columns: repeat(2, 1fr);
+		grid-auto-rows: auto;
+	  }
+	}
+
+	@media (max-width: 500px) {
+	  .info-row {
+		grid-template-columns: 1fr;
+	  }
+	  body {
+		padding: 10px;
+	  }
+	  .board {
+		padding: 10px;
+	  }
+	}
   </style>
 </head>
 <body>
@@ -25,7 +53,9 @@
 
 <label>Date : <input type="date" id="dateFilter" /></label>
 <br/><br/>
-<label>Show x runs : <input type="number" id="topX" value="10" min="1" /></label>
+<label>Max runs showed : <input type="number" id="topX" value="10" min="1" /></label>
+<br/><br/>
+<label><input type="checkbox" id="showObsolete" /> Show obsolete runs</label>
 
 <h4>You can reset infinitely until you get the run that suits you, then run the 5K. 💻 + 🏃</h4>
 <div class="board" id="leftBoard">
@@ -38,6 +68,29 @@
 </div>
 
 <script>
+let pxPerMs = 0.0003;
+
+function countryToFlag(countryCode) {
+  const code = countryCode.toUpperCase();
+  return code.replace(/./g, char =>
+    String.fromCodePoint(127397 + char.charCodeAt(0))
+  );
+}
+
+function filterBestRuns(list) {
+  const best = new Map();
+
+  list.forEach(run => {
+    const total = parseTime(run.rsg) + parseTime(run.k5);
+
+    if (!best.has(run.name) || total < best.get(run.name).total) {
+      best.set(run.name, { ...run, total });
+    }
+  });
+
+  return Array.from(best.values());
+}
+
 function parseTime(t) {
   return t.h*3600000 + t.m*60000 + t.s*1000 + t.ms;
 }
@@ -70,7 +123,20 @@ function sortByTotalTime(list) {
   return list.slice().sort((a,b) => (parseTime(a.rsg)+parseTime(a.k5)) - (parseTime(b.rsg)+parseTime(b.k5)) );
 }
 
-function renderBoard(list, containerId, firstKey, secondKey, maxGlobal) {
+function updatePxPerMs(list1, list2) {
+  const all = [...list1, ...list2];
+  if (all.length === 0) return;
+
+  const maxTotal = Math.max(...all.map(r => parseTime(r.rsg) + parseTime(r.k5)));
+
+  // 90% de la largeur de l'écran
+  const targetWidth = window.innerWidth * 0.75;
+
+  // pxPerMs dynamique
+  pxPerMs = targetWidth / maxTotal;
+}
+
+function renderBoard(list, containerId, firstKey, secondKey) {
   const board = document.getElementById(containerId);
   board.querySelectorAll('.row').forEach(e => e.remove());
   if (list.length === 0) return;
@@ -95,9 +161,17 @@ function renderBoard(list, containerId, firstKey, secondKey, maxGlobal) {
 
     // Ligne info du joueur (au-dessus)
     const infoRow = document.createElement('div');
-    infoRow.className = 'name';
-    infoRow.textContent = `${p.name}        ${p.country}        →        ${p.version}        ${p.f3}        ${p.date}        ${p.mods}        ${p.difficulty}        🌱${p.seed}`;
-    infoRow.style.whiteSpace = "pre";
+	infoRow.className = 'info-row';
+    infoRow.innerHTML = `
+	  <span class="info name">${p.name}</span>
+	  <span class="info country">${countryToFlag(p.country)}</span>
+	  <span class="info version">${p.version}</span>
+	  <span class="info f3">${p.f3}</span>
+	  <span class="info date">${p.date}</span>
+	  <span class="info mods">${p.mods}</span>
+	  <span class="info diff">${p.difficulty}</span>
+	  <span class="info seed">🌱${p.seed}</span>
+	`;
     infoRow.style.marginBottom = '5px';
 
     // Ligne barre + temps total
@@ -108,7 +182,6 @@ function renderBoard(list, containerId, firstKey, secondKey, maxGlobal) {
 
     const bar = document.createElement('div'); 
     bar.className = 'bar-container';
-	const pxPerMs = 0.0003;
 	bar.style.width = ((t1 + t2) * pxPerMs) + 'px';
     
     const firstBar = document.createElement('div'); 
@@ -148,32 +221,36 @@ function renderBoard(list, containerId, firstKey, secondKey, maxGlobal) {
 }
 
 function applyFilter() {
-  const date = document.getElementById('dateFilter').value;
-  const topX = parseInt(document.getElementById('topX').value) || 10;
+	const date = document.getElementById('dateFilter').value;
+	const topX = parseInt(document.getElementById('topX').value) || 10;
+	const showObsolete = document.getElementById('showObsolete').checked;
 
-  const f1 = sortByTotalTime(runsRsg5k.filter(r => !date || r.date <= date)).slice(0, topX);
-  const f2 = sortByTotalTime(runs5kRsg.filter(r => !date || r.date <= date)).slice(0, topX);
+	let f1 = runsRsg5k.filter(r => !date || r.date <= date);
+	let f2 = runs5kRsg.filter(r => !date || r.date <= date);
 
-  const maxLeft = getMaxTotal(f1);
-  const maxRight = getMaxTotal(f2);
+	if (!showObsolete) {
+		f1 = filterBestRuns(f1);
+		f2 = filterBestRuns(f2);
+	}
 
-  renderBoard(f1, 'leftBoard', 'rsg', 'k5', maxLeft);
-  renderBoard(f2, 'rightBoard', 'k5', 'rsg', maxRight);
+	f1 = sortByTotalTime(f1).slice(0, topX);
+  f2 = sortByTotalTime(f2).slice(0, topX);
+
+  // Calibrer automatiquement la largeur des barres (partie 3)
+  updatePxPerMs(f1, f2);
+
+  renderBoard(f1, 'leftBoard', 'rsg', 'k5');
+  renderBoard(f2, 'rightBoard', 'k5', 'rsg');
 }
 
 window.addEventListener('DOMContentLoaded', applyFilter);
+window.addEventListener('resize', applyFilter);
 
 document.getElementById('dateFilter').addEventListener('change', applyFilter);
 document.getElementById('topX').addEventListener('input', applyFilter);
+document.getElementById('showObsolete').addEventListener('change', applyFilter);
 </script>
 
 </body>
 
 </html>
-
-
-
-
-
-
-
