@@ -11,7 +11,7 @@
     .row { margin-bottom: 15px; }
     .name { font-weight: bold; margin-bottom: 5px; }
     .bar-container { width: 100%; background: #444; border-radius: 5px; overflow: hidden; height: 25px; display: flex; }
-    .rsg { background: #4287f5; height: 100%; color: white; display: flex; align-items: center; justify-content: center; font-size: 18px; transition: width 1s ease; }
+    .igt { background: #4287f5; height: 100%; color: white; display: flex; align-items: center; justify-content: center; font-size: 18px; transition: width 1s ease; }
     .k5 { background: #f54291; height: 100%; color: white; display: flex; align-items: center; justify-content: center; font-size: 18px; transition: width 1s ease; }
 	h4 { text-decoration: underline; }
 	.info-row {
@@ -101,7 +101,7 @@ function filterBestRuns(list) {
   const best = new Map();
 
   list.forEach(run => {
-    const total = parseTime(run.rsg) + parseTime(run.k5);
+    const total = parseTime(run.igt) + parseTime(run.k5);
 
     if (!best.has(run.name) || total < best.get(run.name).total) {
       best.set(run.name, { ...run, total });
@@ -125,29 +125,29 @@ function formatTime(ms) {
 }
 
 const runsRsg5k = [
-  { name: "Antoine", date: "2025-11-23", version:"1.16.1", f3:"F3", country:"FR", mods:"Modded", difficulty:"Easy", rsg:{h:0,m:19,s:38,ms:397}, k5:{h:0,m:31,s:24,ms:0}, seed:"?" },
-  { name: "LudovikMC", date: "2025-11-27", version:"1.16.1", f3:"No F3", country:"FR", mods:"Modded", difficulty:"Hardcore", rsg:{h:0,m:25,s:5,ms:576}, k5:{h:0,m:22,s:13,ms:0}, seed:"-5068990900990481486" },
-  { name: "DesktopFolder", date: "2025-11-29", version:"1.16.1", f3:"F3", country:"CA", mods:"Modded", difficulty:"Easy", rsg:{h:0,m:16,s:10,ms:699}, k5:{h:0,m:22,s:44,ms:150}, seed:"4460252521909011407" },
-  { name: "Blyde", date: "2025-11-30", version:"1.16.1", f3:"F3", country:"FR", mods:"Modded", difficulty:"Easy", rsg:{h:0,m:19,s:57,ms:071}, k5:{h:0,m:22,s:55,ms:0}, seed:"5528818920531833096" }
+  { name: "Antoine", date: "2025-11-23", version:"1.16.1", f3:"F3", country:"FR", mods:"Modded", difficulty:"Easy", igt:{h:0,m:18,s:55,ms:394}, k5:{h:0,m:31,s:24,ms:0}, seed:"?" },
+  { name: "LudovikMC", date: "2025-11-27", version:"1.16.1", f3:"No F3", country:"FR", mods:"Modded", difficulty:"Hardcore", igt:{h:0,m:25,s:5,ms:576}, k5:{h:0,m:22,s:13,ms:0}, seed:"-5068990900990481486" },
+  { name: "DesktopFolder", date: "2025-11-29", version:"1.16.1", f3:"F3", country:"CA", mods:"Modded", difficulty:"Easy", igt:{h:0,m:16,s:10,ms:699}, k5:{h:0,m:22,s:44,ms:150}, seed:"4460252521909011407" },
+  { name: "Blyde", date: "2025-11-30", version:"1.16.1", f3:"F3", country:"FR", mods:"Modded", difficulty:"Easy", igt:{h:0,m:19,s:57,ms:071}, k5:{h:0,m:22,s:55,ms:0}, seed:"5528818920531833096" }
 ];
 const runs5kRsg = [
-  { name: "LudovikMC", date: "2025-11-23", version:"1.16.1", f3:"No F3", country:"FR", mods:"Modded", difficulty:"Hard", rsg:{h:0,m:48,s:1,ms:62}, k5:{h:0,m:19,s:57,ms:0}, seed:"9209975185873643422" },
-  { name: "LudovikMC", date: "2025-11-26", version:"1.16.1", f3:"No F3", country:"FR", mods:"Modded", difficulty:"Hard", rsg:{h:0,m:37,s:30,ms:681}, k5:{h:0,m:26,s:34,ms:0}, seed:"-8377709639459139130" },
+  { name: "LudovikMC", date: "2025-11-23", version:"1.16.1", f3:"No F3", country:"FR", mods:"Modded", difficulty:"Hard", igt:{h:0,m:48,s:1,ms:62}, k5:{h:0,m:19,s:57,ms:0}, seed:"9209975185873643422" },
+  { name: "LudovikMC", date: "2025-11-26", version:"1.16.1", f3:"No F3", country:"FR", mods:"Modded", difficulty:"Hard", igt:{h:0,m:37,s:30,ms:681}, k5:{h:0,m:26,s:34,ms:0}, seed:"-8377709639459139130" },
 ];
 
 function getMaxTotal(list) {
-  return Math.max(...list.map(r => parseTime(r.rsg)+parseTime(r.k5)));
+  return Math.max(...list.map(r => parseTime(r.igt)+parseTime(r.k5)));
 }
 
 function sortByTotalTime(list) {
-  return list.slice().sort((a,b) => (parseTime(a.rsg)+parseTime(a.k5)) - (parseTime(b.rsg)+parseTime(b.k5)) );
+  return list.slice().sort((a,b) => (parseTime(a.igt)+parseTime(a.k5)) - (parseTime(b.igt)+parseTime(b.k5)) );
 }
 
 function updatePxPerMs(list1, list2) {
   const all = [...list1, ...list2];
   if (all.length === 0) return;
 
-  const maxTotal = Math.max(...all.map(r => parseTime(r.rsg) + parseTime(r.k5)));
+  const maxTotal = Math.max(...all.map(r => parseTime(r.igt) + parseTime(r.k5)));
 
   // 90% de la largeur de l'écran
   const targetWidth = window.innerWidth * 0.75;
@@ -205,12 +205,12 @@ function renderBoard(list, containerId, firstKey, secondKey) {
 	bar.style.width = ((t1 + t2) * pxPerMs) + 'px';
     
     const firstBar = document.createElement('div'); 
-    firstBar.className = firstKey==='rsg'?'rsg':'k5';
+    firstBar.className = firstKey==='igt'?'igt':'k5';
     firstBar.style.width = (t1/total*100)+'%';
     firstBar.textContent = formatTime(t1);
 
     const secondBar = document.createElement('div'); 
-    secondBar.className = secondKey==='rsg'?'rsg':'k5';
+    secondBar.className = secondKey==='igt'?'igt':'k5';
     secondBar.style.width = (t2/total*100)+'%';
     secondBar.textContent = formatTime(t2);
 
@@ -259,8 +259,8 @@ function applyFilter() {
   // Calibrer automatiquement la largeur des barres (partie 3)
   updatePxPerMs(f1, f2);
 
-  renderBoard(f1, 'leftBoard', 'rsg', 'k5');
-  renderBoard(f2, 'rightBoard', 'k5', 'rsg');
+  renderBoard(f1, 'leftBoard', 'igt', 'k5');
+  renderBoard(f2, 'rightBoard', 'k5', 'igt');
 }
 
 window.addEventListener('DOMContentLoaded', applyFilter);
