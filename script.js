@@ -42,7 +42,7 @@ function updatePxPerMs(l1, l2) {
   const maxTotal = Math.max(...all.map(r =>
     parseTime(r[timeMode]) + parseTime(r.k5)
   ));
-  pxPerMs = (window.innerWidth * 0.80) / maxTotal;
+  pxPerMs = (window.innerWidth * 0.70) / maxTotal;
 }
 
 function filterF3(list) {
