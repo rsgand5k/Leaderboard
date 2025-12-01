@@ -5,272 +5,417 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Leaderboard</title>
   <style>
-    body { font-family: Arial, sans-serif; background: #3e3e3e; color: #f0f0f0; padding: 20px; }
-    h1, h2 { color: #f0f0f0; }
-    .board { background: #2c2c2c; padding: 20px; border-radius: 10px; margin-bottom: 30px; box-shadow: 0 2px 5px rgba(0,0,0,0.5); }
-    .row { margin-bottom: 15px; }
-    .name { font-weight: bold; margin-bottom: 5px; }
-    .bar-container { width: 100%; background: #444; border-radius: 5px; overflow: hidden; height: 25px; display: flex; }
-    .igt { background: #4287f5; height: 100%; color: white; display: flex; align-items: center; justify-content: center; font-size: 18px; transition: width 1s ease; }
-    .k5 { background: #f54291; height: 100%; color: white; display: flex; align-items: center; justify-content: center; font-size: 18px; transition: width 1s ease; }
-	h4 { text-decoration: underline; }
-	.info-row {
-	  display: grid;
-	  grid-template-columns: 150px 60px 100px 80px 120px 100px 120px 1fr;
-	  gap: 10px;
-	  font-size: 14px;
-	  margin-bottom: 6px;
-	}
-	.info {
-	  white-space: nowrap;
-	}
-	@media (max-width: 900px) {
-  .info-row {
-		grid-template-columns: repeat(2, 1fr);
-		grid-auto-rows: auto;
-	  }
-	}
+    body {
+  font-family: 'Verdana', 'Arial', sans-serif;
+  background-color: #3a3a3a;
+  color: #e6e6e6;
+  padding: 20px;
+}
 
-	@media (max-width: 500px) {
-	  .info-row {
-		grid-template-columns: 1fr;
-	  }
-	  body {
-		padding: 10px;
-	  }
-	  .board {
-		padding: 10px;
-	  }
-	}
+h1, h2, h3, h4 {
+  color: #a8ff60;
+  text-shadow: 1px 1px #000;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* === Button Styles === */
+a.button, button {
+  display: inline-block;
+  padding: 10px 18px;
+  background: #60c864;
+  color: white;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0 3px 0 #3a5c36;
+  transition: 0.2s;
+  cursor: pointer;
+}
+a.button:hover, button:hover {
+  background: #7ae37d;
+  box-shadow: 0 2px 0 #3a5c36;
+}
+
+/* === Filters Section === */
+label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+input[type="number"], input[type="date"] {
+  padding: 4px 6px;
+  border-radius: 4px;
+  border: 1px solid #555;
+  background: #222;
+  color: #fff;
+}
+
+input[type="checkbox"], input[type="radio"] {
+  transform: scale(1.2);
+  margin-right: 5px;
+}
+
+/* === Boards === */
+.board {
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid #60c864;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+}
+
+.row {
+  margin-bottom: 15px;
+  border-bottom: 1px solid #555;
+  padding-bottom: 8px;
+}
+.row:last-child {
+  border-bottom: none;
+}
+
+/* === Info Row === */
+.info-row {
+  display: grid;
+  grid-template-columns: 150px 50px 100px 80px 120px 100px 120px 1fr;
+  gap: 10px;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+.info-row span {
+  padding: 2px 4px;
+  background: rgba(96, 200, 100, 0.2);
+  border-radius: 3px;
+  text-align: center;
+}
+
+/* === Bar Containers === */
+.bar-container {
+  width: 100%;
+  background: #444;
+  border-radius: 5px;
+  overflow: hidden;
+  height: 25px;
+  display: flex;
+}
+
+.igt {
+  background: #4287f5;
+  height: 100%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: width 1s ease;
+  font-weight: bold;
+}
+
+.k5 {
+  background: #f54291;
+  height: 100%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: width 1s ease;
+  font-weight: bold;
+}
+
+/* === Rank column === */
+.row > div:first-child {
+  width: 40px;
+  font-weight: bold;
+  margin-right: 10px;
+  color: #ffdd55;
+  text-shadow: 1px 1px #000;
+}
+
+/* === Total Time Text === */
+.row .total-time {
+  margin-left: 10px;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* === Responsive === */
+@media (max-width: 900px) {
+  .info-row {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: auto;
+  }
+}
+
+@media (max-width: 500px) {
+  .info-row {
+    grid-template-columns: 1fr;
+  }
+  body {
+    padding: 10px;
+  }
+  .board {
+    padding: 10px;
+  }
+}
+h1, h2, h3, h4, h5, h6, p, span, label, div {
+    color: #ffffff;
+}
   </style>
 </head>
 <body>
 
-<h1 style="text-align: center;">Leaderboard rules</h1>
+<h1 style="text-align:center;">Leaderboard rules</h1>
 
 <h3>A run is the total time added from an Any % Glitchless run (IGT) to the time of an IRL 5 kilometer race.</h3>
-<h3>The transition between the two runs doesn't count in order to avoid rushing, so you can choose where to run and warm up beforehand.</h3>
-<h3>It is forbidden to use a race for both categories at the same time.</h3>
+<h3>The transition between the two runs doesn't count in order to avoid rushing, so you can choose where to run and warm up beforehand.<h3>
+<h3>It is forbidden to use a race for both categories at the same time.<h3>
 
 <a href="https://mail.google.com/mail/?view=cm&fs=1&to=rsgand5k@gmail.com
 &su=Run%20Submission
 &body=Player%20name:%0ARun%20video/link:%0ARSG%20time:%0ARTA%20time:%0A5K%20time:%0ASeed:%0ADate:%0AF3:%0ADifficulty:%0AMods:%0A"
 target="_blank"
-style="
-  display:inline-block;
-  margin:30px auto;
-  padding:14px 22px;
-  background:#3498db;
-  color:white;
-  border-radius:10px;
-  font-size:20px;
-  text-decoration:none;
-  text-align:center;
-">
+style="display:inline-block;margin:30px auto;padding:14px 22px;background:#3498db;color:white;border-radius:10px;font-size:20px;text-decoration:none;">
   📤 Post your run with Gmail
 </a>
 
 <br/><br/>
-<label>Date : <input type="date" id="dateFilter" /></label>
-<br/><br/>
-<label>Max runs showed : <input type="number" id="topX" value="10" min="1" /></label>
-<br/><br/>
-<label><input type="checkbox" id="showObsolete" /> Show obsolete runs</label>
+<label>Date : <input type="date" id="dateFilter" /></label><br/><br/>
+<label>Max runs showed : <input type="number" id="topX" value="10" min="1" /></label><br/><br/>
+<label><input type="checkbox" id="showObsolete" /> Show obsolete runs</label><br/><br/>
 
-<h4>You can reset infinitely until you get the run that suits you, then run the 5K. 💻 + 🏃</h4>
-<div class="board" id="leftBoard">
-  <h2>RSG + 5K</h2>
+<div style="margin-bottom:10px;">
+  <label><input type="checkbox" id="showF3" checked> Show F3</label>
+  <label style="margin-left:20px;"><input type="checkbox" id="showNoF3" checked> Show No F3</label>
 </div>
 
-<h4>First you have to run the 5K and then play the first seed generated by the game. 🏃 + 💻</h4>
-<div class="board" id="rightBoard">
-  <h2>5K + RSG</h2>
-</div>
+<label><input type="radio" name="timeMode" value="igt" checked> IGT</label>
+<label><input type="radio" name="timeMode" value="rta"> RTA</label>
+
+<h4>You can reset infinitely until you get the run that suits you.</h4>
+<div class="board" id="leftBoard"><h2>RSG + 5K</h2></div>
+
+<h4>First run the 5K then play the first seed generated.</h4>
+<div class="board" id="rightBoard"><h2>5K + RSG</h2></div>
 
 <script>
 let pxPerMs = 0.0003;
+let timeMode = "igt";
 
-function countryToFlag(countryCode) {
-  const code = countryCode.toUpperCase();
-  return code.replace(/./g, char =>
-    String.fromCodePoint(127397 + char.charCodeAt(0))
+function countryToFlag(code) {
+  return code.toUpperCase().replace(/./g, c =>
+    String.fromCodePoint(127397 + c.charCodeAt(0))
   );
-}
-
-function filterBestRuns(list) {
-  const best = new Map();
-
-  list.forEach(run => {
-    const total = parseTime(run.igt) + parseTime(run.k5);
-
-    if (!best.has(run.name) || total < best.get(run.name).total) {
-      best.set(run.name, { ...run, total });
-    }
-  });
-
-  return Array.from(best.values());
 }
 
 function parseTime(t) {
   return t.h*3600000 + t.m*60000 + t.s*1000 + t.ms;
 }
+
 function formatTime(ms) {
   const h = Math.floor(ms/3600000); ms%=3600000;
   const m = Math.floor(ms/60000); ms%=60000;
   const s = Math.floor(ms/1000); ms%=1000;
-  if (h >= 1.0)
-	return `${h}h ${m}m ${s}s ${ms}ms`;
-  else
-	return `${m}m ${s}s ${ms}ms`;
+  if (h >= 1) return `${h}h ${m}m ${s}s ${ms}ms`;
+  return `${m}m ${s}s ${ms}ms`;
 }
 
-const runsRsg5k = [
-  { name: "Antoine", date: "2025-11-23", version:"1.16.1", f3:"F3", country:"FR", mods:"Modded", difficulty:"Easy", igt:{h:0,m:18,s:55,ms:394}, k5:{h:0,m:31,s:24,ms:0}, seed:"?" },
-  { name: "LudovikMC", date: "2025-11-27", version:"1.16.1", f3:"No F3", country:"FR", mods:"Modded", difficulty:"Hardcore", igt:{h:0,m:25,s:5,ms:576}, k5:{h:0,m:22,s:13,ms:0}, seed:"-5068990900990481486" },
-  { name: "DesktopFolder", date: "2025-11-29", version:"1.16.1", f3:"F3", country:"CA", mods:"Modded", difficulty:"Easy", igt:{h:0,m:16,s:10,ms:699}, k5:{h:0,m:22,s:44,ms:150}, seed:"4460252521909011407" },
-  { name: "Blyde", date: "2025-11-30", version:"1.16.1", f3:"F3", country:"FR", mods:"Modded", difficulty:"Easy", igt:{h:0,m:19,s:57,ms:071}, k5:{h:0,m:22,s:55,ms:0}, seed:"5528818920531833096" }
-];
-const runs5kRsg = [
-  { name: "LudovikMC", date: "2025-11-23", version:"1.16.1", f3:"No F3", country:"FR", mods:"Modded", difficulty:"Hard", igt:{h:0,m:48,s:1,ms:62}, k5:{h:0,m:19,s:57,ms:0}, seed:"9209975185873643422" },
-  { name: "LudovikMC", date: "2025-11-26", version:"1.16.1", f3:"No F3", country:"FR", mods:"Modded", difficulty:"Hard", igt:{h:0,m:37,s:30,ms:681}, k5:{h:0,m:26,s:34,ms:0}, seed:"-8377709639459139130" },
-];
-
-function getMaxTotal(list) {
-  return Math.max(...list.map(r => parseTime(r.igt)+parseTime(r.k5)));
+function filterBestRuns(list) {
+  const best = new Map();
+  list.forEach(run => {
+    const total = parseTime(run[timeMode]) + parseTime(run.k5);
+    if (!best.has(run.name) || total < best.get(run.name).total)
+      best.set(run.name, { ...run, total });
+  });
+  return [...best.values()];
 }
 
 function sortByTotalTime(list) {
-  return list.slice().sort((a,b) => (parseTime(a.igt)+parseTime(a.k5)) - (parseTime(b.igt)+parseTime(b.k5)) );
+  return list.slice().sort((a,b) =>
+    (parseTime(a[timeMode]) + parseTime(a.k5)) -
+    (parseTime(b[timeMode]) + parseTime(b.k5))
+  );
 }
 
-function updatePxPerMs(list1, list2) {
-  const all = [...list1, ...list2];
-  if (all.length === 0) return;
+function updatePxPerMs(l1, l2) {
+  const all = [...l1, ...l2];
+  if (!all.length) return;
+  const maxTotal = Math.max(...all.map(r =>
+    parseTime(r[timeMode]) + parseTime(r.k5)
+  ));
+  pxPerMs = (window.innerWidth * 0.80) / maxTotal;
+}
 
-  const maxTotal = Math.max(...all.map(r => parseTime(r.igt) + parseTime(r.k5)));
+function filterF3(list) {
+  const showF3 = document.getElementById("showF3").checked;
+  const showNoF3 = document.getElementById("showNoF3").checked;
 
-  // 90% de la largeur de l'écran
-  const targetWidth = window.innerWidth * 0.75;
+  return list.filter(run => {
+    const hasF3 = (typeof run.F3 !== 'undefined') ? run.F3 : run.f3;
+    const isF3 = Boolean(hasF3);
 
-  // pxPerMs dynamique
-  pxPerMs = targetWidth / maxTotal;
+    if (isF3 && showF3) return true;
+    if (!isF3 && showNoF3) return true;
+    return false;
+  });
+}
+
+function getSuffix(n) {
+    if (n === 1) return "st";
+    if (n === 2) return "nd";
+    if (n === 3) return "rd";
+    return "th";
 }
 
 function renderBoard(list, containerId, firstKey, secondKey) {
   const board = document.getElementById(containerId);
-  board.querySelectorAll('.row').forEach(e => e.remove());
-  if (list.length === 0) return;
+  board.querySelectorAll(".row").forEach(e => e.remove());
 
   list.forEach((p, index) => {
-    const t1 = parseTime(p[firstKey]);
-    const t2 = parseTime(p[secondKey]);
-    const total = t1 + t2;
+    const tRsg = parseTime(p[timeMode]);
+    const t5k = parseTime(p.k5);
 
-    const row = document.createElement('div'); 
-    row.className = 'row';
-    row.style.display = 'flex';
-    row.style.alignItems = 'flex-start';
+    const part1 = (firstKey === "rsg") ? tRsg : t5k;
+    const part2 = (secondKey === "rsg") ? tRsg : t5k;
 
-    // Rang
-    const rankDiv = document.createElement('div');
-    const suffix = (n) => n===1?'st':n===2?'nd':n===3?'rd':'th';
-    rankDiv.textContent = `${index+1}${suffix(index+1)}`;
-    rankDiv.style.width = '40px';
-    rankDiv.style.fontWeight = 'bold';
-    rankDiv.style.marginRight = '10px';
+    const total = part1 + part2;
 
-    // Ligne info du joueur (au-dessus)
-    const infoRow = document.createElement('div');
-	infoRow.className = 'info-row';
-    infoRow.innerHTML = `
-	  <span class="info name">${p.name}</span>
-	  <span class="info country">${countryToFlag(p.country)}</span>
-	  <span class="info version">${p.version}</span>
-	  <span class="info f3">${p.f3}</span>
-	  <span class="info date">${p.date}</span>
-	  <span class="info mods">${p.mods}</span>
-	  <span class="info diff">${p.difficulty}</span>
-	  <span class="info seed">🌱${p.seed}</span>
-	`;
-    infoRow.style.marginBottom = '5px';
+    const row = document.createElement("div");
+    row.className = "row";
+    row.style.display = "flex";
 
-    // Ligne barre + temps total
-    const barRow = document.createElement('div');
-    barRow.style.display = 'flex';
-    barRow.style.alignItems = 'center';
-    barRow.style.justifyContent = 'space-between';
+    const rank = document.createElement("div");
+    rank.style.width = "40px";
+    rank.style.fontWeight = "bold";
+    rank.style.marginRight = "10px";
+    rank.textContent = (index+1) + getSuffix(index+1);
 
-    const bar = document.createElement('div'); 
-    bar.className = 'bar-container';
-	bar.style.width = ((t1 + t2) * pxPerMs) + 'px';
-    
-    const firstBar = document.createElement('div'); 
-    firstBar.className = firstKey==='igt'?'igt':'k5';
-    firstBar.style.width = (t1/total*100)+'%';
-    firstBar.textContent = formatTime(t1);
+	const f3Txt = p.f3 ? "F3" : "No F3";
 
-    const secondBar = document.createElement('div'); 
-    secondBar.className = secondKey==='igt'?'igt':'k5';
-    secondBar.style.width = (t2/total*100)+'%';
-    secondBar.textContent = formatTime(t2);
+    const info = document.createElement("div");
+    info.className = "info-row";
+    info.innerHTML = `
+      <span class="name">${p.name}</span>
+      <span>${countryToFlag(p.country)}</span>
+      <span>${p.version}</span>
+      <span>${f3Txt}</span>
+      <span>${p.date}</span>
+      <span>${p.mods}</span>
+      <span>${p.difficulty}</span>
+      <span>🌱${p.seed}</span>
+    `;
 
-    bar.appendChild(firstBar);
-    bar.appendChild(secondBar);
+    const bar = document.createElement("div");
+    bar.className = "bar-container";
+    bar.style.width = (total * pxPerMs) + "px";
 
-    const totalDiv = document.createElement('div');
-    totalDiv.textContent = formatTime(total);
-    totalDiv.style.whiteSpace = 'nowrap';
-    totalDiv.style.marginLeft = '10px';
+    // BAR 1
+    const b1 = document.createElement("div");
+    b1.className = (firstKey === "rsg") ? "igt" : "k5";
+    b1.style.width = (part1 / total * 100) + "%";
+    b1.textContent = formatTime(part1);
 
-	const window_width = window.innerWidth;
+    // BAR 2
+    const b2 = document.createElement("div");
+    b2.className = (secondKey === "rsg") ? "igt" : "k5";
+    b2.style.width = (part2 / total * 100) + "%";
+    b2.textContent = formatTime(part2);
 
-    barRow.appendChild(bar);
-    barRow.appendChild(totalDiv);
+    bar.appendChild(b1);
+    bar.appendChild(b2);
 
-    // Colonne principale (infos + barre)
-    const mainCol = document.createElement('div');
-    mainCol.style.flex = '1';
-    mainCol.appendChild(infoRow);
-    mainCol.appendChild(barRow);
+    const totalTxt = document.createElement("div");
+    totalTxt.style.marginLeft = "10px";
+    totalTxt.textContent = formatTime(total);
 
-    // Ajout à la row
-    row.appendChild(rankDiv);
-    row.appendChild(mainCol);
+    const barRow = document.createElement("div");
+	barRow.style.display = "flex";
+	barRow.style.justifyContent = "space-between";
+	barRow.style.alignItems = "center";
+
+	const barWrapper = document.createElement("div");
+	barWrapper.style.flex = "1";
+	barWrapper.appendChild(bar);
+
+	barRow.appendChild(barWrapper);
+	barRow.appendChild(totalTxt);
+
+    const col = document.createElement("div");
+    col.style.flex = "1";
+    col.appendChild(info);
+    col.appendChild(barRow);
+
+    row.appendChild(rank);
+    row.appendChild(col);
     board.appendChild(row);
   });
 }
 
+const runsRsg5k = [
+  { name:"Antoine", date:"2025-11-23", version:"1.16.1", f3:true, country:"FR", mods:"Modded", difficulty:"Easy", igt:{h:0,m:18,s:55,ms:394}, rta:{h:0,m:19,s:38,ms:397}, k5:{h:0,m:31,s:24,ms:0}, seed:"?" },
+  { name:"LudovikMC", date:"2025-11-27", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hardcore", igt:{h:0,m:25,s:5,ms:576}, rta:{h:0,m:25,s:39,ms:714}, k5:{h:0,m:22,s:13,ms:0}, seed:"-5068990900990481486" },
+  { name:"DesktopFolder", date:"2025-11-29", version:"1.16.1", f3:true, country:"CA", mods:"Modded", difficulty:"Easy", igt:{h:0,m:16,s:10,ms:699}, rta:{h:0,m:16,s:36,ms:958}, k5:{h:0,m:22,s:44,ms:150}, seed:"4460252521909011407" },
+  { name:"Blyde", date:"2025-11-30", version:"1.16.1", f3:true, country:"FR", mods:"Modded", difficulty:"Easy", igt:{h:0,m:19,s:57,ms:71}, rta:{h:0,m:20,s:42,ms:53}, k5:{h:0,m:22,s:55,ms:0}, seed:"5528818920531833096" }
+];
+
+const runs5kRsg = [
+  { name:"LudovikMC", date:"2025-11-23", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hard", igt:{h:0,m:48,s:1,ms:62}, rta:{h:0,m:49,s:2,ms:164}, k5:{h:0,m:19,s:57,ms:0}, seed:"9209975185873643422" },
+  { name:"LudovikMC", date:"2025-11-26", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hard", igt:{h:0,m:37,s:30,ms:681}, rta:{h:0,m:38,s:19,ms:254}, k5:{h:0,m:26,s:34,ms:0}, seed:"-8377709639459139130" },
+];
+
 function applyFilter() {
-	const date = document.getElementById('dateFilter').value;
-	const topX = parseInt(document.getElementById('topX').value) || 10;
-	const showObsolete = document.getElementById('showObsolete').checked;
+  const date = document.getElementById('dateFilter').value;
+  const topX = Number(document.getElementById('topX').value || 10);
+  const showObsolete = document.getElementById('showObsolete').checked;
 
-	let f1 = runsRsg5k.filter(r => !date || r.date <= date);
-	let f2 = runs5kRsg.filter(r => !date || r.date <= date);
+  // Filtrer par date d'abord
+  let f1 = runsRsg5k.filter(r => !date || r.date <= date);
+  let f2 = runs5kRsg.filter(r => !date || r.date <= date);
 
-	if (!showObsolete) {
-		f1 = filterBestRuns(f1);
-		f2 = filterBestRuns(f2);
-	}
+  // Si on ne veut pas les runs obsolètes -> garder seulement le meilleur par joueur
+  if (!showObsolete) {
+    f1 = filterBestRuns(f1);
+    f2 = filterBestRuns(f2);
+  }
 
-	f1 = sortByTotalTime(f1).slice(0, topX);
+  // Filtrage F3 / NoF3 AVANT le tri et le slice (important)
+  f1 = filterF3(f1);
+  f2 = filterF3(f2);
+
+  // Trier et limiter au topX (après avoir filtré)
+  f1 = sortByTotalTime(f1).slice(0, topX);
   f2 = sortByTotalTime(f2).slice(0, topX);
 
-  // Calibrer automatiquement la largeur des barres (partie 3)
+  // recalcul pxPerMs selon les listes finales
   updatePxPerMs(f1, f2);
 
-  renderBoard(f1, 'leftBoard', 'igt', 'k5');
-  renderBoard(f2, 'rightBoard', 'k5', 'igt');
+  // render (ordre : left = rsg then 5k ; right = 5k then rsg)
+  renderBoard(f1, "leftBoard", "rsg", "k5");
+  renderBoard(f2, "rightBoard", "k5", "rsg");
 }
 
-window.addEventListener('DOMContentLoaded', applyFilter);
-window.addEventListener('resize', applyFilter);
+window.addEventListener("DOMContentLoaded", applyFilter);
+window.addEventListener("resize", applyFilter);
 
 document.getElementById('dateFilter').addEventListener('change', applyFilter);
 document.getElementById('topX').addEventListener('input', applyFilter);
 document.getElementById('showObsolete').addEventListener('change', applyFilter);
+
+document.querySelectorAll('input[name="timeMode"]').forEach(r =>
+  r.addEventListener('change', e => {
+    timeMode = e.target.value;
+    applyFilter();
+  })
+);
+
+document.getElementById("showF3").addEventListener("change", applyFilter);
+document.getElementById("showNoF3").addEventListener("change", applyFilter);
 </script>
 
 </body>
-
 </html>
