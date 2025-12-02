@@ -201,3 +201,33 @@ input[type="checkbox"], input[type="radio"] {
     min-width: 110px;
     text-align: right;
 }
+
+.igt, .rta,
+.k5 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+	size: 12px;
+}
+
+@media (max-width: 600px) {
+    .run {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 6px;
+        width: 100%;
+    }
+
+    .total-time {
+        align-self: flex-end;
+        margin-top: 6px;
+    }
+
+    .bar-container {
+        width: 100%;
+    }
+	
+	.igt, .rta, .k5 {
+        font-size: 6px;
+    }
+}
