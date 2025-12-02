@@ -150,9 +150,17 @@ function renderBoard(list, containerId, firstKey, secondKey) {
     totalTxt.textContent = formatTime(total);
 
     const barRow = document.createElement("div");
-    barRow.style.display = "flex";
-    barRow.appendChild(bar);
-    barRow.appendChild(totalTxt);
+	barRow.style.display = "flex";
+	barRow.style.alignItems = "center";
+
+	const barWrapper = document.createElement("div");
+	barWrapper.style.flex = "1";
+	barWrapper.appendChild(bar);
+
+	totalTxt.className = "total-time";
+
+	barRow.appendChild(barWrapper);
+	barRow.appendChild(totalTxt);
 
     const col = document.createElement("div");
     col.style.flex = "1";
