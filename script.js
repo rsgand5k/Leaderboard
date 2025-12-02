@@ -150,6 +150,7 @@ function renderBoard(list, containerId, firstKey, secondKey) {
     totalTxt.textContent = formatTime(total);
 
     const barRow = document.createElement("div");
+	barRow.className = "run";
 	barRow.style.display = "flex";
 	barRow.style.alignItems = "center";
 
