@@ -94,15 +94,17 @@ function renderBoard(list, containerId, firstKey, secondKey) {
 
     showTooltip(`
         <b>${p.name}</b><br>
-        <a href="${p.link ?? '#'}" target="_blank" style="color:#4af; text-decoration:underline;">
-            → Open run link
-        </a>
+        ${
+        p.link 
+        ? `<a href="${p.link}" target="_blank" style="color:#4af; text-decoration:underline;">→ Run link </a>`
+        : `<span style="color:#faa;">╳  No link</span>`
+		}
         <br><br>
         Seed : <span style="color:#9f9;">${p.seed}</span><br>
 		Difficulty : ${p.difficulty}<br>
 		Mods : ${p.mods}<br>
         Version : ${p.version}<br>
-		F3 : ${p.f3}<br>
+		F3 : ${p.f3 === true ? 'F3' : 'No F3'}<br>
         Date : ${p.date}<br>
     `, x, y);
 	});
