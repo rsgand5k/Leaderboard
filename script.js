@@ -189,6 +189,7 @@ const runsRsg5k = [
 const runs5kRsg = [
   { name:"LudovikMC", date:"2025-11-23", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hard", igt:{h:0,m:48,s:1,ms:62}, rta:{h:0,m:49,s:2,ms:164}, k5:{h:0,m:19,s:57,ms:0}, seed:"9209975185873643422", link:"" },
   { name:"LudovikMC", date:"2025-11-26", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hard", igt:{h:0,m:37,s:30,ms:681}, rta:{h:0,m:38,s:19,ms:254}, k5:{h:0,m:26,s:34,ms:0}, seed:"-8377709639459139130", link:"" },
+  { name:"LudovikMC", date:"2025-12-27", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hard", igt:{h:0,m:42,s:39,ms:821}, rta:{h:0,m:42,s:54,ms:017}, k5:{h:0,m:18,s:22,ms:500}, seed:"3852899728699119638", link:"https://www.twitch.tv/videos/2654281232" },
 ];
 
 function applyFilter() {
