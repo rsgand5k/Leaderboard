@@ -183,13 +183,14 @@ const runsRsg5k = [
   { name:"DesktopFolder", date:"2025-11-29", version:"1.16.1", f3:true, country:"CA", mods:"Modded", difficulty:"Easy", igt:{h:0,m:16,s:10,ms:699}, rta:{h:0,m:16,s:36,ms:958}, k5:{h:0,m:22,s:44,ms:150}, seed:"4460252521909011407", link:"https://www.youtube.com/watch?v=nizPV0YUZ4Q" },
   { name:"Blyde", date:"2025-11-30", version:"1.16.1", f3:true, country:"FR", mods:"Modded", difficulty:"Easy", igt:{h:0,m:19,s:57,ms:71}, rta:{h:0,m:20,s:42,ms:53}, k5:{h:0,m:22,s:55,ms:0}, seed:"5528818920531833096", link:"" },
   { name:"Fr4nkey", date:"2025-12-02", version:"1.16.1", f3:true, country:"RU", mods:"Modded", difficulty:"Easy", igt:{h:0,m:13,s:57,ms:820}, rta:{h:0,m:14,s:15,ms:0}, k5:{h:0,m:25,s:17,ms:0}, seed:"8929439908023461646", link:"https://www.youtube.com/watch?v=PjCsG_eJcKA" },
-  { name:"Fr4nkey", date:"2025-12-13", version:"1.16.1", f3:true, country:"RU", mods:"Modded", difficulty:"Easy", igt:{h:0,m:11,s:20,ms:327}, rta:{h:0,m:11,s:31,ms:0}, k5:{h:0,m:22,s:14,ms:240}, seed:"6869386029071364720", link:"https://www.youtube.com/watch?v=GoI8jzo3C6Y" }
+  { name:"Fr4nkey", date:"2025-12-13", version:"1.16.1", f3:true, country:"RU", mods:"Modded", difficulty:"Easy", igt:{h:0,m:11,s:20,ms:327}, rta:{h:0,m:11,s:31,ms:0}, k5:{h:0,m:22,s:14,ms:240}, seed:"6869386029071364720", link:"https://www.youtube.com/watch?v=GoI8jzo3C6Y" },
+  { name:"LudovikMC", date:"2026-01-17", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hardcore", igt:{h:0,m:17,s:17,ms:235}, rta:{h:0,m:18,s:06,ms:272}, k5:{h:0,m:19,s:34,ms:500}, seed:"-1026921766230817449", link:"https://www.youtube.com/watch?v=M3GxF49uBFA" },
 ];
 
 const runs5kRsg = [
   { name:"LudovikMC", date:"2025-11-23", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hard", igt:{h:0,m:48,s:1,ms:62}, rta:{h:0,m:49,s:2,ms:164}, k5:{h:0,m:19,s:57,ms:0}, seed:"9209975185873643422", link:"" },
   { name:"LudovikMC", date:"2025-11-26", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hard", igt:{h:0,m:37,s:30,ms:681}, rta:{h:0,m:38,s:19,ms:254}, k5:{h:0,m:26,s:34,ms:0}, seed:"-8377709639459139130", link:"" },
-  { name:"LudovikMC", date:"2025-12-27", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hard", igt:{h:0,m:42,s:39,ms:821}, rta:{h:0,m:42,s:54,ms:017}, k5:{h:0,m:18,s:22,ms:500}, seed:"3852899728699119638", link:"https://www.twitch.tv/videos/2654352051" },
+  { name:"LudovikMC", date:"2025-12-27", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hard", igt:{h:0,m:42,s:39,ms:821}, rta:{h:0,m:42,s:54,ms:017}, k5:{h:0,m:18,s:22,ms:900}, seed:"3852899728699119638", link:"https://www.twitch.tv/videos/2654352051" },
 ];
 
 function applyFilter() {
