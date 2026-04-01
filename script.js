@@ -185,7 +185,7 @@ const runsRsg5k = [
   { name:"Fr4nkey", date:"2025-12-02", version:"1.16.1", f3:true, country:"RU", mods:"Modded", difficulty:"Easy", igt:{h:0,m:13,s:57,ms:820}, rta:{h:0,m:14,s:15,ms:0}, k5:{h:0,m:25,s:17,ms:0}, seed:"8929439908023461646", link:"https://www.youtube.com/watch?v=PjCsG_eJcKA" },
   { name:"Fr4nkey", date:"2025-12-13", version:"1.16.1", f3:true, country:"RU", mods:"Modded", difficulty:"Easy", igt:{h:0,m:11,s:20,ms:327}, rta:{h:0,m:11,s:31,ms:0}, k5:{h:0,m:22,s:14,ms:240}, seed:"6869386029071364720", link:"https://www.youtube.com/watch?v=GoI8jzo3C6Y" },
   { name:"LudovikMC", date:"2026-01-17", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hardcore", igt:{h:0,m:17,s:17,ms:235}, rta:{h:0,m:18,s:06,ms:272}, k5:{h:0,m:19,s:34,ms:500}, seed:"-1026921766230817449", link:"https://www.youtube.com/watch?v=M3GxF49uBFA" },
-{ name:"legoboy1234", date:"2026-03-31", version:"1.16.1", f3:true, country:"US", mods:"Modded", difficulty:"Easy", igt:{h:0,m:11,s:48,ms:717}, rta:{h:0,m:12,s:04,ms:875}, k5:{h:0,m:28,s:12,ms:0}, seed:"?", link:"https://youtu.be/ICxFfBU9yA8" },
+{ name:"legoboy1234", date:"2026-03-31", version:"1.16.1", f3:true, country:"US", mods:"Modded", difficulty:"Easy", igt:{h:0,m:11,s:48,ms:717}, rta:{h:0,m:12,s:04,ms:875}, k5:{h:0,m:28,s:12,ms:0}, seed:"5211054053007582760", link:"https://youtu.be/ICxFfBU9yA8" },
 ];
 
 const runs5kRsg = [
