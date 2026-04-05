@@ -1,6 +1,6 @@
 let pxPerMs = 0.0003;
 let timeMode = "igt";
-let ratio_screen = 70;
+let ratio_screen = 65;
 
 function countryToFlag(code) {
   return code.toUpperCase().replace(/./g, c =>
