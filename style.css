@@ -111,7 +111,7 @@ input[type="checkbox"], input[type="radio"] {
   font-weight: bold;
 }
 
-.k5 {
+.time {
   background: #f54291;
   height: 100%;
   color: white;
@@ -203,7 +203,7 @@ input[type="checkbox"], input[type="radio"] {
 }
 
 .igt, .rta,
-.k5 {
+.time {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -227,7 +227,7 @@ input[type="checkbox"], input[type="radio"] {
         width: 100%;
     }
 	
-	.igt, .rta, .k5 {
+	.igt, .rta, .time {
         font-size: 7px;
     }
 }
