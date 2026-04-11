@@ -193,12 +193,13 @@ const runs_5K_any = [
   { name:"LudovikMC", date:"2026-02-11", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hardcore", igt:{h:0,m:28,s:30,ms:893}, rta:{h:0,m:29,s:47,ms:938}, time:{h:0,m:18,s:31,ms:0}, seed:"471589420443183072", link:"https://www.twitch.tv/videos/2694879300" },
   { name:"DesktopFolder", date:"2026-03-05", version:"1.16.1", f3:true, country:"CA", mods:"Modded", difficulty:"Easy", igt:{h:0,m:21,s:57,ms:073}, rta:{h:0,m:22,s:42,ms:551}, time:{h:0,m:23,s:47,ms:0}, seed:"-6113485235216793906", link:"https://www.youtube.com/watch?v=ImcDBA5ZppE" },
   { name:"Doog4321", date:"2026-03-10", version:"1.16.1", f3:true, country:"US", mods:"Modded", difficulty:"Easy", igt:{h:0,m:23,s:53,ms:027}, rta:{h:0,m:25,s:19,ms:0}, time:{h:0,m:26,s:41,ms:0}, seed:"5179192011070350515", link:"https://www.youtube.com/live/HATy5dF9na0?t=446s" },
-{ name:"DesktopFolder", date:"2026-04-09", version:"1.16.1", f3:true, country:"CA", mods:"Modded", difficulty:"Easy", igt:{h:0,m:21,s:46,ms:705}, rta:{h:0,m:22,s:57,ms:844}, time:{h:0,m:21,s:27,ms:0},seed:"8680437627049885912", link:"https://youtu.be/F5lUv1d8fS8?si=p1hlDgZMZ7cIODF1" },
+  { name:"DesktopFolder", date:"2026-04-09", version:"1.16.1", f3:true, country:"CA", mods:"Modded", difficulty:"Easy", igt:{h:0,m:21,s:46,ms:705}, rta:{h:0,m:22,s:57,ms:844}, time:{h:0,m:21,s:27,ms:0},seed:"8680437627049885912", link:"https://youtu.be/F5lUv1d8fS8?si=p1hlDgZMZ7cIODF1" },
 ];
 
 const runs_half_10K = [];
 const runs_10K_half = [
   { name:"DesktopFolder", date:"2026-04-04", version:"1.16.1", f3:true, country:"CA", mods:"Modded", difficulty:"Easy", igt:{h:0,m:45,s:51,ms:227}, rta:{h:0,m:49,s:53,ms:915}, time:{h:0,m:51,s:01,ms:0}, seed:"-7226257513615693532", link:"https://www.youtube.com/watch?v=FUJaNkovjZQ" },
+  { name:"LudovikMC", date:"2026-04-11", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hard", igt:{h:0,m:40,s:25,ms:344}, rta:{h:0,m:42,s:29,ms:110}, time:{h:0,m:51,s:53,ms:0}, seed:"?", link:"" },
 ];
 
 const runs_hdwgh_21K = [];
