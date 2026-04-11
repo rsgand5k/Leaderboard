@@ -200,6 +200,7 @@ const runs_half_10K = [];
 const runs_10K_half = [
   { name:"DesktopFolder", date:"2026-04-04", version:"1.16.1", f3:true, country:"CA", mods:"Modded", difficulty:"Easy", igt:{h:0,m:45,s:51,ms:227}, rta:{h:0,m:49,s:53,ms:915}, time:{h:0,m:51,s:01,ms:0}, seed:"-7226257513615693532", link:"https://www.youtube.com/watch?v=FUJaNkovjZQ" },
   { name:"LudovikMC", date:"2026-04-11", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hard", igt:{h:0,m:40,s:25,ms:344}, rta:{h:0,m:42,s:29,ms:110}, time:{h:0,m:51,s:53,ms:0}, seed:"?", link:"" },
+  { name:"DesktopFolder", date:"2026-04-11", version:"1.16.1", f3:true, country:"CA", mods:"Modded", difficulty:"Easy", igt:{h:0,m:30,s:25,ms:733}, rta:{h:0,m:34,s:14,ms:997}, time:{h:0,m:46,s:57,ms:0}, seed:"-3498854702721201773 ", link:"https://www.twitch.tv/desktopfolder" },
 ];
 
 const runs_hdwgh_21K = [];
