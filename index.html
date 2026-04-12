@@ -10,36 +10,53 @@
 
 <h1 style="text-align:center;">Leaderboard rules</h1>
 
-<h3>A run is the total time added from a Glitchless run to the time of an IRL race.</h3>
-<h3>The transition between the two runs doesn't count in order to avoid rushing, so you can choose where to run and warm up beforehand.<h3>
-<h3>It is forbidden to use a race for both categories at the same time.<h3>
-<h3>The IRL race and the Minecraft race must be done on the same day.</h3>
+<div class="container">
+  <div class="left">
+    <h4>A run is the total time added from a Glitchless run to the time of an IRL race.</h4>
+    <h4>The transition between the two runs doesn't count in order to avoid rushing, so you can choose where to run and warm up beforehand.</h4>
+    <h4>It is forbidden to use a race for both categories at the same time.</h4>
+    <h4>The IRL race and the Minecraft race must be done on the same day.</h4>
 
-<a href="https://mail.google.com/mail/?view=cm&fs=1&to=rsgand5k@gmail.com
-&su=Run%20Submission
-&body=Player%20name:%0ARun%20video/link:%0ARSG%20time:%0ARTA%20time:%0A5K%20time:%0ASeed:%0ADate:%0AF3:%0ADifficulty:%0AMods:%0A"
-target="_blank"
-style="display:inline-block;margin:30px auto;padding:14px 22px;background:#3498db;color:white;border-radius:10px;font-size:20px;text-decoration:none;">
-  📤 Post your run with Gmail
-</a>
-<h3>Moderators on Discord: ludovikmc, desktopfolder</h3>
+    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=rsgand5k@gmail.com
+    &su=Run%20Submission
+    &body=Category:%0APlayer%20name:%0ARun%20video/link:%0ARSG%20time:%0ARTA%20time:%0ARace%20time:%0ASeed:%0ADate:%0AF3:%0ADifficulty:%0AMods:%0A"
+    target="_blank"
+    style="display:inline-block;margin:30px auto;padding:14px 22px;background:#3498db;color:white;border-radius:10px;font-size:20px;text-decoration:none;">
+      📤 Post your run with Gmail
+    </a>
 
-<br/><br/>
-<label>Date : <input type="date" id="dateFilter" /></label><br/><br/>
-<label>Max runs showed : <input type="number" id="topX" value="10" min="1" /></label><br/><br/>
-<label><input type="checkbox" id="showObsolete" /> Show obsolete runs</label><br/><br/>
+    <h3>Or contact a moderator on Discord: ludovikmc, desktopfolder</h3>
+  </div>
 
-<div style="margin-bottom:10px;">
-  <label><input type="checkbox" id="showF3" checked> Show F3</label>
-  <label style="margin-left:20px;"><input type="checkbox" id="showNoF3" checked> Show No F3</label>
+  <div class="right">
+    <label>Date : <input type="date" id="dateFilter" /></label><br/><br/>
+    
+    <label>Max runs showed : 
+      <input type="number" id="topX" value="10" min="1" />
+    </label><br/><br/>
+    
+    <label>
+      <input type="checkbox" id="showObsolete" /> Show obsolete runs
+    </label><br/><br/>
+
+    <div style="margin-bottom:10px;">
+      <label><input type="checkbox" id="showF3" checked> Show F3</label>
+      <label style="margin-left:20px;">
+        <input type="checkbox" id="showNoF3" checked> Show No F3
+      </label>
+    </div>
+
+    <label>
+      <input type="radio" name="timeMode" value="igt" checked> IGT
+    </label>
+    <label>
+      <input type="radio" name="timeMode" value="rta"> RTA
+    </label>
+  </div>
 </div>
 
-<label><input type="radio" name="timeMode" value="igt" checked> IGT</label>
-<label><input type="radio" name="timeMode" value="rta"> RTA</label><br/><br/>
-
-
-<div class="board" id="any-5K"><h2>any% RSG + 5K</h2><h4>You can reset infinitely until you get the run that suits you then run the 5K.</h4></div>
-<div class="board" id="5K-any"><h2>5K + any% RSG</h2><h4>First run the 5K then play the first seed generated.</h4></div>
+<div class="board" id="any-5K"><h2>Any% + 5K</h2><h4>You can reset infinitely until you get the run that suits you then run the 5K.</h4></div>
+<div class="board" id="5K-any"><h2>5K + Any%</h2><h4>First run the 5K then play the first seed generated.</h4></div>
 
 <div class="board" id="half-10K"><h2>Half% + 10K</h2><h4>You can reset infinitely until you get the run that suits you then run the 10K.</h4></div>
 <div class="board" id="10K-half"><h2>10K + Half%</h2><h4>First run the 10K then play the first seed generated.</h4></div>
