@@ -78,6 +78,8 @@ function renderBoard(list, containerId, firstKey, secondKey, localPxPerMs) {
 
   board.querySelectorAll(".row").forEach(e => e.remove());
 
+  const fragment = document.createDocumentFragment();
+
   list.forEach((p, index) => {
     const part1 = getTimeValue(p, firstKey);
     const part2 = getTimeValue(p, secondKey);
@@ -88,47 +90,42 @@ function renderBoard(list, containerId, firstKey, secondKey, localPxPerMs) {
     row.className = "row";
     row.style.display = "flex";
     row.style.position = "relative";
-	
-	row.addEventListener("mouseenter", () => {
-
-    const nameSpan = row.querySelector(".name");
-    const rect = nameSpan.getBoundingClientRect();
-
-    const x = rect.left;
-    const y = rect.top - 10;
-
-    showTooltip(`
-        <b>${p.name}</b><br>
-        ${
-        p.link 
-        ? `<a href="${p.link}" target="_blank" style="color:#4af; text-decoration:underline;">→ Run link </a>`
-        : `<span style="color:#faa;">╳  No link</span>`
-		}
-        <br><br>
-        Seed : <span style="color:#9f9;">${p.seed}</span><br>
-		Difficulty : ${p.difficulty}<br>
-		Mods : ${p.mods}<br>
-        Version : ${p.version}<br>
-		F3 : ${p.f3 === true ? 'F3' : 'No F3'}<br>
-        Date : ${p.date}<br>
-    `, x, y);
-	});
 
     const rank = document.createElement("div");
     rank.style.width = "40px";
     rank.style.fontWeight = "bold";
     rank.style.marginRight = "10px";
-    rank.textContent = (index+1) + getSuffix(index+1);
+    rank.textContent = (index + 1) + getSuffix(index + 1);
+
+    const img = new Image();
+    img.src = `Heads/${p.name}.png`;
+
+    img.onload = () => {
+      img.style.width = "30px";
+      img.style.display = "block";
+      img.style.marginTop = "5px";
+      img.style.border = "1px solid white";
+      rank.appendChild(img);
+    };
 
     const info = document.createElement("div");
     info.className = "info-row";
-    info.innerHTML = `
-      <span class="name">${p.name}</span>
-      <span>${countryToFlag(p.country)}</span>
-      <span>${p.version}</span>
-      <span>${p.f3 ? "F3" : "No F3"}</span>
-      <span>${p.difficulty}</span>
-    `;
+
+    const createSpan = (text, style = "") => {
+      const span = document.createElement("span");
+      span.innerHTML = text;
+      if (style) span.style.cssText = style;
+      return span;
+    };
+
+    info.appendChild(createSpan(p.name));
+    info.appendChild(createSpan(countryToFlag(p.country)));
+    info.appendChild(createSpan(p.version));
+    info.appendChild(createSpan(p.f3 ? "F3" : "No F3"));
+    info.appendChild(createSpan(p.difficulty));
+    info.appendChild(createSpan(p.date));
+    info.appendChild(createSpan(p.mods));
+    info.appendChild(createSpan(p.seed, "color:#9f9;"));
 
     const bar = document.createElement("div");
     bar.className = "bar-container";
@@ -163,27 +160,54 @@ function renderBoard(list, containerId, firstKey, secondKey, localPxPerMs) {
     barRow.appendChild(barWrapper);
     barRow.appendChild(totalTxt);
 
+    const link = document.createElement("a");
+
+    if (p.link) {
+      link.href = p.link;
+      link.textContent = "Run link";
+      link.style.color = "#4da6ff";
+      link.style.textDecoration = "underline";
+      link.target = "_blank";
+    } else {
+      link.href = "#";
+      link.textContent = "No link";
+      link.style.color = "#ff3333";
+      link.style.textDecoration = "none";
+      link.style.cursor = "default";
+      link.onclick = (e) => e.preventDefault();
+    }
+
+    link.style.marginTop = "4px";
+    link.style.fontSize = "14px";
+    link.style.alignSelf = "flex-end";
+
     const col = document.createElement("div");
     col.style.flex = "1";
+    col.style.display = "flex";
+    col.style.flexDirection = "column";
+
     col.appendChild(info);
     col.appendChild(barRow);
+    col.appendChild(link);
 
     row.appendChild(rank);
     row.appendChild(col);
 
-    board.appendChild(row);
+    fragment.appendChild(row);
   });
+
+  board.appendChild(fragment);
 }
 
 const runs_any_5K = [
-  { name:"Antoine", date:"2025-11-23", version:"1.16.1", f3:true, country:"FR", mods:"Modded", difficulty:"Easy", igt:{h:0,m:18,s:55,ms:394}, rta:{h:0,m:19,s:38,ms:397}, time:{h:0,m:31,s:24,ms:0}, seed:"?", link:"https://www.twitch.tv/videos/2625908254" },
+  { name:"Antoine", date:"2025-11-23", version:"1.16.1", f3:true, country:"FR", mods:"Modded", difficulty:"Easy", igt:{h:0,m:18,s:55,ms:394}, rta:{h:0,m:19,s:38,ms:397}, time:{h:0,m:31,s:24,ms:0}, seed:"?", link:"" },
   { name:"LudovikMC", date:"2025-11-27", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hardcore", igt:{h:0,m:25,s:5,ms:576}, rta:{h:0,m:25,s:39,ms:714}, time:{h:0,m:22,s:13,ms:0}, seed:"-5068990900990481486", link:"" },
   { name:"DesktopFolder", date:"2025-11-29", version:"1.16.1", f3:true, country:"CA", mods:"Modded", difficulty:"Easy", igt:{h:0,m:16,s:10,ms:699}, rta:{h:0,m:16,s:36,ms:958}, time:{h:0,m:22,s:44,ms:150}, seed:"4460252521909011407", link:"https://www.youtube.com/watch?v=nizPV0YUZ4Q" },
   { name:"Blyde", date:"2025-11-30", version:"1.16.1", f3:true, country:"FR", mods:"Modded", difficulty:"Easy", igt:{h:0,m:19,s:57,ms:71}, rta:{h:0,m:20,s:42,ms:53}, time:{h:0,m:22,s:55,ms:0}, seed:"5528818920531833096", link:"" },
   { name:"Fr4nkey", date:"2025-12-02", version:"1.16.1", f3:true, country:"RU", mods:"Modded", difficulty:"Easy", igt:{h:0,m:13,s:57,ms:820}, rta:{h:0,m:14,s:15,ms:0}, time:{h:0,m:25,s:17,ms:0}, seed:"8929439908023461646", link:"https://www.youtube.com/watch?v=PjCsG_eJcKA" },
   { name:"Fr4nkey", date:"2025-12-13", version:"1.16.1", f3:true, country:"RU", mods:"Modded", difficulty:"Easy", igt:{h:0,m:11,s:20,ms:327}, rta:{h:0,m:11,s:31,ms:0}, time:{h:0,m:22,s:14,ms:240}, seed:"6869386029071364720", link:"https://www.youtube.com/watch?v=GoI8jzo3C6Y" },
   { name:"LudovikMC", date:"2026-01-17", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hardcore", igt:{h:0,m:17,s:17,ms:235}, rta:{h:0,m:18,s:06,ms:272}, time:{h:0,m:19,s:34,ms:500}, seed:"-1026921766230817449", link:"https://www.youtube.com/watch?v=M3GxF49uBFA" },
-  { name:"Legoboy1234", date:"2026-03-31", version:"1.16.1", f3:true, country:"US", mods:"Modded", difficulty:"Easy", igt:{h:0,m:11,s:48,ms:717}, rta:{h:0,m:12,s:04,ms:875}, time:{h:0,m:28,s:12,ms:0}, seed:"5211054053007582760", link:"https://youtu.be/ICxFfBU9yA8" },
+  { name:"Legoboy1243", date:"2026-03-31", version:"1.16.1", f3:true, country:"US", mods:"Modded", difficulty:"Easy", igt:{h:0,m:11,s:48,ms:717}, rta:{h:0,m:12,s:04,ms:875}, time:{h:0,m:28,s:12,ms:0}, seed:"5211054053007582760", link:"https://youtu.be/ICxFfBU9yA8" },
 ];
 
 const runs_5K_any = [
@@ -196,7 +220,11 @@ const runs_5K_any = [
   { name:"DesktopFolder", date:"2026-04-09", version:"1.16.1", f3:true, country:"CA", mods:"Modded", difficulty:"Easy", igt:{h:0,m:21,s:46,ms:705}, rta:{h:0,m:22,s:57,ms:844}, time:{h:0,m:21,s:27,ms:0},seed:"8680437627049885912", link:"https://youtu.be/F5lUv1d8fS8?si=p1hlDgZMZ7cIODF1" },
 ];
 
-const runs_half_10K = [];
+const runs_half_10K = [
+  { name:"LudovikMC", date:"2026-04-13", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hard", igt:{h:1,m:11,s:15,ms:274}, rta:{h:1,m:13,s:33,ms:548}, time:{h:0,m:49,s:15,ms:0}, seed:"8955576644772799517", link:"" },
+];
+
+
 const runs_10K_half = [
   { name:"DesktopFolder", date:"2026-04-04", version:"1.16.1", f3:true, country:"CA", mods:"Modded", difficulty:"Easy", igt:{h:0,m:45,s:51,ms:227}, rta:{h:0,m:49,s:53,ms:915}, time:{h:0,m:51,s:01,ms:0}, seed:"-7226257513615693532", link:"https://www.youtube.com/watch?v=FUJaNkovjZQ" },
   { name:"LudovikMC", date:"2026-04-11", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hard", igt:{h:0,m:40,s:25,ms:344}, rta:{h:0,m:42,s:29,ms:110}, time:{h:0,m:51,s:53,ms:0}, seed:"-5260968053087870447", link:"" },
