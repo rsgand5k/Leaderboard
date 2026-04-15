@@ -165,13 +165,13 @@ function renderBoard(list, containerId, firstKey, secondKey, localPxPerMs) {
     if (p.link) {
       link.href = p.link;
       link.textContent = "Run link";
-      link.style.color = "#4da6ff";
+      link.style.color = "#4287f5";
       link.style.textDecoration = "underline";
       link.target = "_blank";
     } else {
       link.href = "#";
       link.textContent = "No link";
-      link.style.color = "#ff3333";
+      link.style.color = "#f54291";
       link.style.textDecoration = "none";
       link.style.cursor = "default";
       link.onclick = (e) => e.preventDefault();
@@ -201,35 +201,38 @@ function renderBoard(list, containerId, firstKey, secondKey, localPxPerMs) {
 
 const runs_any_5K = [
   { name:"Antoine", date:"2025-11-23", version:"1.16.1", f3:true, country:"FR", mods:"Modded", difficulty:"Easy", igt:{h:0,m:18,s:55,ms:394}, rta:{h:0,m:19,s:38,ms:397}, time:{h:0,m:31,s:24,ms:0}, seed:"?", link:"" },
-  { name:"LudovikMC", date:"2025-11-27", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hardcore", igt:{h:0,m:25,s:5,ms:576}, rta:{h:0,m:25,s:39,ms:714}, time:{h:0,m:22,s:13,ms:0}, seed:"-5068990900990481486", link:"" },
+  { name:"Ludovik", date:"2025-11-27", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hardcore", igt:{h:0,m:25,s:5,ms:576}, rta:{h:0,m:25,s:39,ms:714}, time:{h:0,m:22,s:13,ms:0}, seed:"-5068990900990481486", link:"" },
   { name:"DesktopFolder", date:"2025-11-29", version:"1.16.1", f3:true, country:"CA", mods:"Modded", difficulty:"Easy", igt:{h:0,m:16,s:10,ms:699}, rta:{h:0,m:16,s:36,ms:958}, time:{h:0,m:22,s:44,ms:150}, seed:"4460252521909011407", link:"https://www.youtube.com/watch?v=nizPV0YUZ4Q" },
   { name:"Blyde", date:"2025-11-30", version:"1.16.1", f3:true, country:"FR", mods:"Modded", difficulty:"Easy", igt:{h:0,m:19,s:57,ms:71}, rta:{h:0,m:20,s:42,ms:53}, time:{h:0,m:22,s:55,ms:0}, seed:"5528818920531833096", link:"" },
   { name:"Fr4nkey", date:"2025-12-02", version:"1.16.1", f3:true, country:"RU", mods:"Modded", difficulty:"Easy", igt:{h:0,m:13,s:57,ms:820}, rta:{h:0,m:14,s:15,ms:0}, time:{h:0,m:25,s:17,ms:0}, seed:"8929439908023461646", link:"https://www.youtube.com/watch?v=PjCsG_eJcKA" },
   { name:"Fr4nkey", date:"2025-12-13", version:"1.16.1", f3:true, country:"RU", mods:"Modded", difficulty:"Easy", igt:{h:0,m:11,s:20,ms:327}, rta:{h:0,m:11,s:31,ms:0}, time:{h:0,m:22,s:14,ms:240}, seed:"6869386029071364720", link:"https://www.youtube.com/watch?v=GoI8jzo3C6Y" },
-  { name:"LudovikMC", date:"2026-01-17", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hardcore", igt:{h:0,m:17,s:17,ms:235}, rta:{h:0,m:18,s:06,ms:272}, time:{h:0,m:19,s:34,ms:500}, seed:"-1026921766230817449", link:"https://www.youtube.com/watch?v=M3GxF49uBFA" },
+  { name:"Ludovik", date:"2026-01-17", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hardcore", igt:{h:0,m:17,s:17,ms:235}, rta:{h:0,m:18,s:06,ms:272}, time:{h:0,m:19,s:34,ms:500}, seed:"-1026921766230817449", link:"https://www.youtube.com/watch?v=M3GxF49uBFA" },
   { name:"Legoboy1243", date:"2026-03-31", version:"1.16.1", f3:true, country:"US", mods:"Modded", difficulty:"Easy", igt:{h:0,m:11,s:48,ms:717}, rta:{h:0,m:12,s:04,ms:875}, time:{h:0,m:28,s:12,ms:0}, seed:"5211054053007582760", link:"https://youtu.be/ICxFfBU9yA8" },
 ];
 
 const runs_5K_any = [
-  { name:"LudovikMC", date:"2025-11-23", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hard", igt:{h:0,m:48,s:1,ms:62}, rta:{h:0,m:49,s:2,ms:164}, time:{h:0,m:19,s:57,ms:0}, seed:"9209975185873643422", link:"" },
-  { name:"LudovikMC", date:"2025-11-26", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hard", igt:{h:0,m:37,s:30,ms:681}, rta:{h:0,m:38,s:19,ms:254}, time:{h:0,m:26,s:34,ms:0}, seed:"-8377709639459139130", link:"" },
-  { name:"LudovikMC", date:"2025-12-27", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hard", igt:{h:0,m:42,s:39,ms:821}, rta:{h:0,m:42,s:54,ms:017}, time:{h:0,m:18,s:22,ms:900}, seed:"3852899728699119638", link:"https://www.twitch.tv/videos/2654352051" },
-  { name:"LudovikMC", date:"2026-02-11", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hardcore", igt:{h:0,m:28,s:30,ms:893}, rta:{h:0,m:29,s:47,ms:938}, time:{h:0,m:18,s:31,ms:0}, seed:"471589420443183072", link:"https://www.twitch.tv/videos/2694879300" },
+  { name:"Ludovik", date:"2025-11-23", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hard", igt:{h:0,m:48,s:1,ms:62}, rta:{h:0,m:49,s:2,ms:164}, time:{h:0,m:19,s:57,ms:0}, seed:"9209975185873643422", link:"" },
+  { name:"Ludovik", date:"2025-11-26", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hard", igt:{h:0,m:37,s:30,ms:681}, rta:{h:0,m:38,s:19,ms:254}, time:{h:0,m:26,s:34,ms:0}, seed:"-8377709639459139130", link:"" },
+  { name:"Ludovik", date:"2025-12-27", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hard", igt:{h:0,m:42,s:39,ms:821}, rta:{h:0,m:42,s:54,ms:017}, time:{h:0,m:18,s:22,ms:900}, seed:"3852899728699119638", link:"https://www.twitch.tv/videos/2654352051" },
+  { name:"Ludovik", date:"2026-02-11", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hardcore", igt:{h:0,m:28,s:30,ms:893}, rta:{h:0,m:29,s:47,ms:938}, time:{h:0,m:18,s:31,ms:0}, seed:"471589420443183072", link:"https://www.twitch.tv/videos/2694879300" },
   { name:"DesktopFolder", date:"2026-03-05", version:"1.16.1", f3:true, country:"CA", mods:"Modded", difficulty:"Easy", igt:{h:0,m:21,s:57,ms:073}, rta:{h:0,m:22,s:42,ms:551}, time:{h:0,m:23,s:47,ms:0}, seed:"-6113485235216793906", link:"https://www.youtube.com/watch?v=ImcDBA5ZppE" },
   { name:"Doog4321", date:"2026-03-10", version:"1.16.1", f3:true, country:"US", mods:"Modded", difficulty:"Easy", igt:{h:0,m:23,s:53,ms:027}, rta:{h:0,m:25,s:19,ms:0}, time:{h:0,m:26,s:41,ms:0}, seed:"5179192011070350515", link:"https://www.youtube.com/live/HATy5dF9na0?t=446s" },
   { name:"DesktopFolder", date:"2026-04-09", version:"1.16.1", f3:true, country:"CA", mods:"Modded", difficulty:"Easy", igt:{h:0,m:21,s:46,ms:705}, rta:{h:0,m:22,s:57,ms:844}, time:{h:0,m:21,s:27,ms:0},seed:"8680437627049885912", link:"https://youtu.be/F5lUv1d8fS8?si=p1hlDgZMZ7cIODF1" },
 ];
 
 const runs_half_10K = [
-  { name:"LudovikMC", date:"2026-04-13", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hard", igt:{h:1,m:11,s:15,ms:274}, rta:{h:1,m:13,s:33,ms:548}, time:{h:0,m:49,s:15,ms:0}, seed:"8955576644772799517", link:"" },
+  { name:"Ludovik", date:"2026-04-13", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hard", igt:{h:1,m:11,s:15,ms:274}, rta:{h:1,m:13,s:33,ms:548}, time:{h:0,m:49,s:15,ms:0}, seed:"8955576644772799517", link:"" },
 ];
 
 
 const runs_10K_half = [
   { name:"DesktopFolder", date:"2026-04-04", version:"1.16.1", f3:true, country:"CA", mods:"Modded", difficulty:"Easy", igt:{h:0,m:45,s:51,ms:227}, rta:{h:0,m:49,s:53,ms:915}, time:{h:0,m:51,s:01,ms:0}, seed:"-7226257513615693532", link:"https://www.youtube.com/watch?v=FUJaNkovjZQ" },
-  { name:"LudovikMC", date:"2026-04-11", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hard", igt:{h:0,m:40,s:25,ms:344}, rta:{h:0,m:42,s:29,ms:110}, time:{h:0,m:51,s:53,ms:0}, seed:"-5260968053087870447", link:"" },
+  { name:"Ludovik", date:"2026-04-11", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hard", igt:{h:0,m:40,s:25,ms:344}, rta:{h:0,m:42,s:29,ms:110}, time:{h:0,m:51,s:53,ms:0}, seed:"-5260968053087870447", link:"" },
   { name:"DesktopFolder", date:"2026-04-11", version:"1.16.1", f3:true, country:"CA", mods:"Modded", difficulty:"Easy", igt:{h:0,m:30,s:25,ms:733}, rta:{h:0,m:34,s:14,ms:997}, time:{h:0,m:46,s:57,ms:0}, seed:"-3498854702721201773 ", link:"https://www.youtube.com/watch?v=XLt7Vciqefw" },
 ];
+
+const runs_ab_15K = [];
+const runs_15K_ab = [];
 
 const runs_hdwgh_21K = [];
 const runs_21K_hdwgh = [];
@@ -243,11 +246,14 @@ const allBoards = [
 
   { data: runs_half_10K, id: "half-10K", first: "main", second: "time" },
   { data: runs_10K_half, id: "10K-half", first: "time", second: "main" },
+  
+  { data: runs_ab_15K, id: "ab-15k", first: "main", second: "time" },
+  { data: runs_15K_ab, id: "15K-ab", first: "time", second: "main" },
 
   { data: runs_hdwgh_21K, id: "hdwgh-21K", first: "main", second: "time" },
   { data: runs_21K_hdwgh, id: "21K-hdwgh", first: "time", second: "main" },
 
-  { data: runs_aa_42K, id: "aa-42k", first: "main", second: "time" },
+  { data: runs_aa_42K, id: "aa-42K", first: "main", second: "time" },
   { data: runs_42K_aa, id: "42K-aa", first: "time", second: "main" }
 ];
 
