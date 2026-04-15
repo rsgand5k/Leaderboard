@@ -62,11 +62,92 @@
 <div class="board" id="half-10K"><h2>Half% + 10K</h2><h5>You can reset infinitely until you get the run that suits you then run the 10K.</h5></div>
 <div class="board" id="10K-half"><h2>10K + Half%</h2><h5>First run the 10K then play the first seed generated.</h5></div>
 
-<div class="board" id="hdwgh-21K"><h2>HDWGH + Half Marathon</h2><h5>You can reset infinitely until you get the run that suits you then run the 21K.</h5></div>  
-<div class="board" id="21K-hdwgh"><h2>Half Marathon + HDWGH</h2><h5>First run the 21K then play the first seed generated.</h5></div>
+<div class="board" id="ab-15K" style="opacity: 0.2;"><h2>All Bosses + 15K</h2><h5>You can reset infinitely until you get the run that suits you then run the 15K.</h5></div>
+<div class="board" id="15K-ab" style="opacity: 0.2;"><h2>15K + All Bosses</h2><h5>First run the 105 then play the first seed generated.</h5></div>
 
-<div class="board" id="aa-42K"><h2>AA + Marathon</h2><h5>You can reset infinitely until you get the run that suits you then run the 42,195K.</h5></div> 
-<div class="board" id="42K-aa"><h2>Marathon + AA</h2><h5>First run the 42,195K then play the first seed generated.</h5></div>
+<div class="board" id="hdwgh-21K" style="opacity: 0.2;"><h2>HDWGH + Half Marathon</h2><h5>You can reset infinitely until you get the run that suits you then run the 21K.</h5></div>  
+<div class="board" id="21K-hdwgh" style="opacity: 0.2;"><h2>Half Marathon + HDWGH</h2><h5>First run the 21K then play the first seed generated.</h5></div>
+
+<div class="board" id="aa-42K" style="opacity: 0.2;"><h2>All Advancements + Marathon</h2><h5>You can reset infinitely until you get the run that suits you then run the 42,195K.</h5></div> 
+<div class="board" id="42K-aa" style="opacity: 0.2;"><h2>Marathon + All Advancements</h2><h5>First run the 42,195K then play the first seed generated.</h5></div>
+
+<div id="tooltip"></div>
+<script src="script.js"></script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leaderboard</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="Heads/DesktopFolder.png">
+</head>
+<body>
+
+<h1 style="text-align:center;">Leaderboard rules</h1>
+
+<div class="container">
+  <div class="left">
+    <h4>A run is the total time added from a Glitchless run to the time of an IRL race.</h4>
+    <h4>The transition between the two runs doesn't count in order to avoid rushing, so you can choose where to run and warm up beforehand.</h4>
+    <h4>It is forbidden to use a race for both categories at the same time.</h4>
+    <h4>The IRL race and the Minecraft race must be done on the same day.</h4>
+
+    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=rsgand5k@gmail.com
+    &su=Run%20Submission
+    &body=Category:%0APlayer%20name:%0ARun%20video/link:%0ARSG%20time:%0ARTA%20time:%0ARace%20time:%0ASeed:%0ADate:%0AF3:%0ADifficulty:%0AMods:%0A"
+    target="_blank"
+    style="display:inline-block;margin:30px auto;padding:14px 22px;background:#3498db;color:white;border-radius:10px;font-size:20px;text-decoration:none;">
+      📤 Post your run with Gmail
+    </a>
+
+    <h3>Or contact a moderator on Discord: ludovikmc, desktopfolder</h3>
+  </div>
+
+  <div class="right">
+    <label>Date : <input type="date" id="dateFilter" /></label><br/><br/>
+    
+    <label>Max runs showed : 
+      <input type="number" id="topX" value="10" min="1" />
+    </label><br/><br/>
+    
+    <label>
+      <input type="checkbox" id="showObsolete" /> Show obsolete runs
+    </label><br/><br/>
+
+    <div style="margin-bottom:10px;">
+      <label><input type="checkbox" id="showF3" checked> Show F3</label>
+      <label style="margin-left:20px;">
+        <input type="checkbox" id="showNoF3" checked> Show No F3
+      </label>
+    </div>
+
+    <label>
+      <input type="radio" name="timeMode" value="igt" checked> IGT
+    </label>
+    <label>
+      <input type="radio" name="timeMode" value="rta"> RTA
+    </label>
+  </div>
+</div>
+
+<div class="board" id="any-5K"><h2>Any% + 5K</h2><h5>You can reset infinitely until you get the run that suits you then run the 5K.</h5></div>
+<div class="board" id="5K-any"><h2>5K + Any%</h2><h5>First run the 5K then play the first seed generated.</h5></div>
+
+<div class="board" id="half-10K"><h2>Half% + 10K</h2><h5>You can reset infinitely until you get the run that suits you then run the 10K.</h5></div>
+<div class="board" id="10K-half"><h2>10K + Half%</h2><h5>First run the 10K then play the first seed generated.</h5></div>
+
+<div class="board" id="ab-15K" style="opacity: 0.2;"><h2>All Bosses + 15K</h2><h5>You can reset infinitely until you get the run that suits you then run the 15K.</h5></div>
+<div class="board" id="15K-ab" style="opacity: 0.2;"><h2>15K + All Bosses</h2><h5>First run the 105 then play the first seed generated.</h5></div>
+
+<div class="board" id="hdwgh-21K" style="opacity: 0.2;"><h2>HDWGH + Half Marathon</h2><h5>You can reset infinitely until you get the run that suits you then run the 21K.</h5></div>  
+<div class="board" id="21K-hdwgh" style="opacity: 0.2;"><h2>Half Marathon + HDWGH</h2><h5>First run the 21K then play the first seed generated.</h5></div>
+
+<div class="board" id="aa-42K" style="opacity: 0.2;"><h2>All Advancements + Marathon</h2><h5>You can reset infinitely until you get the run that suits you then run the 42,195K.</h5></div> 
+<div class="board" id="42K-aa" style="opacity: 0.2;"><h2>Marathon + All Advancements</h2><h5>First run the 42,195K then play the first seed generated.</h5></div>
 
 <div id="tooltip"></div>
 <script src="script.js"></script>
