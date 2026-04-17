@@ -228,6 +228,7 @@ const runs_5K_any = [
 
 const runs_half_10K = [
   { name:"Ludovik", date:"2026-04-13", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hard", igt:{h:1,m:11,s:15,ms:274}, rta:{h:1,m:13,s:33,ms:548}, time:{h:0,m:49,s:15,ms:0}, seed:"8955576644772799517", link:"" },
+  { name:"Ludovik", date:"2026-04-17", version:"1.16.5", f3:false, country:"FR", mods:"Modded", difficulty:"Hardcore", igt:{h:0,m:54,s:08,ms:898}, rta:{h:0,m:54,s:59,ms:294}, time:{h:0,m:50,s:06,ms:0}, seed:"4722933392814446678", link:"" },
 ];
 
 
