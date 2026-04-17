@@ -196,6 +196,12 @@ function renderBoard(list, containerId, firstKey, secondKey, localPxPerMs) {
     fragment.appendChild(row);
   });
 
+if (!fragment.hasChildNodes()) {
+	board.style.opacity = "0.2";
+  } else {
+	board.style.opacity = "1";
+  }
+  
   board.appendChild(fragment);
 }
 
