@@ -253,7 +253,7 @@ const allBoards = [
   { data: runs_half_10K, id: "half-10K", first: "main", second: "time" },
   { data: runs_10K_half, id: "10K-half", first: "time", second: "main" },
   
-  { data: runs_ab_15K, id: "ab-15k", first: "main", second: "time" },
+  { data: runs_ab_15K, id: "ab-15K", first: "main", second: "time" },
   { data: runs_15K_ab, id: "15K-ab", first: "time", second: "main" },
 
   { data: runs_hdwgh_21K, id: "hdwgh-21K", first: "main", second: "time" },
