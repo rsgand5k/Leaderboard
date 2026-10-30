@@ -215,7 +215,7 @@ const runs_any_5K = [
   { name:"Ludovik", date:"2026-01-17", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hardcore", igt:{h:0,m:17,s:17,ms:235}, rta:{h:0,m:18,s:06,ms:272}, time:{h:0,m:19,s:34,ms:500}, seed:"-1026921766230817449", link:"https://www.youtube.com/watch?v=M3GxF49uBFA" },
   { name:"Legoboy1243", date:"2026-03-31", version:"1.16.1", f3:true, country:"US", mods:"Modded", difficulty:"Easy", igt:{h:0,m:11,s:48,ms:717}, rta:{h:0,m:12,s:04,ms:875}, time:{h:0,m:28,s:12,ms:0}, seed:"5211054053007582760", link:"https://youtu.be/ICxFfBU9yA8" },
   { name:"DesktopFolder", date:"2026-04-23", version:"1.16.1", f3:true, country:"CA", mods:"Modded", difficulty:"Easy", igt:{h:0,m:13,s:08,ms:858}, rta:{h:0,m:13,s:30,ms:662}, time:{h:0,m:20,s:32,ms:0}, seed:"-5323216276342761036", link:"https://www.youtube.com/watch?v=buvhYuutT8s" },
-  { name:"Ludovik", date:"2026-010-30", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hardcore", igt:{h:0,m:14,s:47,ms:922}, rta:{h:0,m:16,s:20,ms:632}, time:{h:0,m:18,s:39,ms:040}, seed:"-7402496646496695648", link:"https://youtu.be/RMN9usx0oDM?t=571" },
+  { name:"Ludovik", date:"2026-10-30", version:"1.16.1", f3:false, country:"FR", mods:"Modded", difficulty:"Hardcore", igt:{h:0,m:14,s:47,ms:922}, rta:{h:0,m:16,s:20,ms:632}, time:{h:0,m:18,s:39,ms:040}, seed:"-7402496646496695648", link:"https://youtu.be/RMN9usx0oDM?t=571" },
 ];
 
 const runs_5K_any = [
